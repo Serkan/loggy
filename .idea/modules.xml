@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/loggy.iml" filepath="$PROJECT_DIR$/loggy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loggy-jetty/loggy-jetty.iml" filepath="$PROJECT_DIR$/loggy-jetty/loggy-jetty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loggy-utils/loggy-utils.iml" filepath="$PROJECT_DIR$/loggy-utils/loggy-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loggy-web/loggy-web.iml" filepath="$PROJECT_DIR$/loggy-web/loggy-web.iml" />
+    </modules>
+  </component>
+</project>
+

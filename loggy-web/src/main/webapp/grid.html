@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>Loggy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loggy"/>
+    <meta name="keywords" content="loggy, log"/>
+    <meta name="application-name" content="Genyx admin template"/>
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700' rel='stylesheet' type='text/css'>-->
+    <!-- Text -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />-->
+    <!-- Core stylesheets do not remove -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="css/icons.css" rel="stylesheet"/>
+    <link href="css/tipTip.css" rel="stylesheet"/>
+    <!-- Plugins stylesheets -->
+    <link href="js/plugins/forms/uniform/uniform.default.css" rel="stylesheet"/>
+    <!-- app stylesheets -->
+    <link href="css/app.css" rel="stylesheet"/>
+    <!-- Custom stylesheets ( Put your own changes here ) -->
+    <!--<link href="css/custom.css" rel="stylesheet"/>-->
+    <!--[if IE 8]>
+    <link href="css/ie8.css" rel="stylesheet" type="text/css"/><![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script> <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.html">
+    <!-- Le javascript ================================================== -->
+    <!-- Important plugins put in all pages -->
+    <script src="js/jquery-1.9.0.js"></script>
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <script src="js/conditionizr.min.js"></script>
+    <script src="js/plugins/core/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="js/plugins/core/jrespond/jRespond.min.js"></script>
+    <script src="js/jquery.genyxAdmin.js"></script>
+    <script src="js/jquery.tipTip.minified.js"></script>
+    <!-- Init plugins -->
+    <script src="js/app.js"></script>
+    <!-- Core js functions -->
+    <!-- Form plugins -->
+    <script src="js/plugins/forms/uniform/jquery.uniform.min.js"></script>
+    <script src="js/jquery.atmosphere.js"></script>
+
+    <!--<style type="text/css">-->
+    <!--.tip {-->
+    <!--background-image: url('css/img/plus.png');-->
+    <!--vertical-align: middle;-->
+    <!--height: 16px;-->
+    <!--width: 16px;-->
+    <!--}-->
+    <!--</style>-->
+
+    <script type="text/javascript">
+        var bindCounterMinimize = 0;
+        var counterTooltip = 0;
+
+        $(document).ready(function () {
+            // this request gets tracker nodes
+            $.ajax({
+                url: "ManagementConfig",
+                dataType: "json"
+            }).done(function (msg) {
+                        for (var i = 0; i < msg.length; i++) {
+                            openSocketTo(msg[i]);
+                        }
+                    });
+        });
+        /**
+         * Opens a atmosphere connection which may be a websocket, comet or long-polling
+         * decided by atmosphere framework autamaticly.
+         *
+         * @param trackerIPportPair trackerIP:port string
+         */
+        function openSocketTo(trackerIPportPair) {
+            var request = { url: 'http://' + trackerIPportPair + '/loggy/resource/',
+                contentType: "application/json",
+                logLevel: 'debug',
+                enableProtocol: true,
+                transport: 'websocket'
+            };
+            // atmosphere connection establishment
+            request.onOpen = function (response) {
+                $('#serverName').append(" (<span style='color:green'>Connection Established</span>)");
+            }
+            // every log line pushed from server drops to onMessage method, response.responseBody
+            // contains json object identified by following example
+            // {"domainName":"test_domain","name":"test_serv01","listenPort":"7003","listenAddress":"application01","logLine":<Server> <Jms> ....... <>}
+            request.onMessage = function (response) {
+                var obj = JSON.parse(response.responseBody);
+                var appendix = obj.listenAddress + obj.listenPort;
+                if ($('#' + appendix + 'header').length > 0) {
+                    appendLogWidget(appendix, obj);
+                }
+                else {
+                    createLogWidget(appendix, obj);
+                    appendLogWidget(appendix, obj);
+                }
+            }
+            // after request preparement, opens a socket to given tracker node
+            var socket = $.atmosphere;
+            var subsocket = socket.subscribe(request);
+
+        }
+
+        function createLogWidget(appendix, obj) {
+            $("#mainContainer").append('<div class="row-fluid"><div class="span12"><div class="widget"><div class="widget-title">'
+                    + '<div class="icon"><i class="icon20 i-cube"></i></div><h4 id="' + appendix + 'header"> Domain Name :  ' + obj.domainName + '   <span style="color:red">|</span> Server Name : ' + obj.name + ' <span style="color:red">|</span> Listen Address : ' + obj.listenAddress + ' <span style="color:red">|</span> Listen Port :  ' + obj.listenPort + '</h4>'
+                    + '<a href="#" id="' + appendix + 'slideToggle" class="maximize"></a></div><div id="' + appendix + 'widgetContent" class="widget-content" style="display:none;"><div id="' + appendix + 'newContent" style="display:none;"></div>'
+                    + '<div id="' + appendix + 'fullContent"></div></div></div></div></div>');
+            $('#' + appendix + 'slideToggle').bind('click', function () {
+                if ($(this).hasClass('minimize')) {
+                    $(this).removeClass('minimize').addClass('maximize').closest('div.widget-title').next('div.widget-content').slideUp('200')
+                } else {
+                    $(this).removeClass('maximize').addClass('minimize').closest('div.widget-title').next('div.widget-content').slideDown('200');
+                    var activeObj = $(this).closest('div.widget-title').next('div.widget-content');
+                    activeObj.scrollTop(activeObj.prop("scrollHeight"));
+                }
+            });
+        }
+
+        function appendLogWidget(appendix, obj) {
+//            $('#' + appendix + 'newContent').text(obj.logLine);
+//            var str = "";
+            var str = obj.logHeaders;
+//            var logHeaderLength = logHeaderObj.length;
+//            for (var i = 0; i < logHeaderLength; i++) {
+//                str += logHeaderObj[i] + "<br />";
+//            }
+            counterTooltip++;
+            $('#' + appendix + 'fullContent').append('<img src="css/img/plus.png" style="vertical-align: middle" id="' + counterTooltip + 'toolTip"  class="toolTip" title="' + str + '"/>&nbsp;&nbsp;' + obj.logLine + "<br /><br />");
+//            $('#' + appendix + 'fullContent').append(obj.logLine + "<br />");
+            $("#" + counterTooltip + "toolTip").tipTip();
+            var activeObj = $('#' + appendix + 'widgetContent');
+            var prop = activeObj.prop("scrollHeight");
+            if (prop != 0) {
+                activeObj.scrollTop(prop);
+            }
+        }
+    </script>
+</head>
+<body>
+<header id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid"><a class="brand" href="dashboard.html"><img src="images/logo.png"
+                                                                                 alt="Loggy admin"></a>
+
+            <div class="nav-no-collapse"></div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</header>
+<!-- End #header -->
+<div class="main">
+    <aside id="sidebar">
+        <div class="side-options">
+            <ul>
+                <li><a href="#" id="collapse-nav" class="act act-primary tip" title="Collapse navigation"><i
+                        class="icon16 i-arrow-left-7"></i></a></li>
+            </ul>
+        </div>
+        <div class="sidebar-wrapper">
+            <nav id="mainnav">
+                <ul class="nav nav-list">
+
+                    <li><a href="grid.html"> <span class="icon"><i class="icon20 i-grid-5"></i></span> <span
+                            class="txt">Production Server</span> </a></li>
+
+                </ul>
+            </nav>
+            <!-- End #mainnav -->
+        </div>
+        <!-- End .sidebar-wrapper -->
+    </aside>
+    <!-- End #sidebar -->
+    <section id="content">
+        <div class="wrapper">
+            <div class="crumb">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="icon16 i-home-4"></i>Home</a></li>
+
+                </ul>
+            </div>
+            <div id="mainContainer" class="container-fluid">
+                <div id="heading" class="page-header">
+                    <h1 id="serverName"><i class="icon20 i-grid-5"></i> Production Server</h1>
+                </div>
+            </div>
+            <!-- End .container-fluid -->
+        </div>
+        <!-- End .wrapper -->
+    </section>
+</div>
+<!-- End .main -->
+</body>
+</html>

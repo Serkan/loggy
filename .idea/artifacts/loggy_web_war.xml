@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="loggy-web:war">
+    <output-path>$PROJECT_DIR$/loggy-web/target</output-path>
+    <root id="archive" name="loggy-web.war">
+      <element id="artifact" artifact-name="loggy-web:war exploded" />
+    </root>
+  </artifact>
+</component>

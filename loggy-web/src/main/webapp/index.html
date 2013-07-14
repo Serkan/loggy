@@ -1,0 +1,65 @@
+<html>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!--<script src="js/jquery-1.9.0.js"></script>-->
+<script src="js/jquery.atmosphere.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#dialog").dialog();
+    });
+
+    $(document).ready(function () {
+        // this request gets tracker nodes
+        $.ajax({
+            url: "ManagementConfig",
+            dataType: "json"
+        }).done(function (msg) {
+                    for (var i = 0; i < msg.length; i++) {
+                        openSocketTo(msg[i]);
+                    }
+                });
+    });
+    /**
+     * Opens a atmosphere connection which may be a websocket, comet or long-polling
+     * decided by atmosphere framework autamaticly.
+     *
+     * @param trackerIPportPair trackerIP:port string
+     */
+    function openSocketTo(trackerIPportPair) {
+        var request = { url: 'http://' + trackerIPportPair + '/loggy/resource/',
+            contentType: "application/json",
+            logLevel: 'debug',
+            enableProtocol: true,
+            transport: 'websocket'
+        };
+        // atmosphere connection establishment
+        request.onOpen = function (response) {
+            $('#serverName').append(" (<span style='color:green'>Connection Established</span>)");
+        }
+        // every log line pushed from server drops to onMessage method, response.responseBody
+        // contains json object identified by following example
+        // {"domainName":"test_domain","name":"test_serv01","listenPort":"7003","listenAddress":"application01","logLine":<Server> <Jms> ....... <>}
+        request.onMessage = function (response) {
+            var s = JSON.parse(response.responseBody);
+            $('#dialog').append(s.logLine);
+//            var activeObj = $('#dialog');
+//            var prop = activeObj.prop("scrollHeight");
+//            if (prop != 0) {
+//                activeObj.scrollTop(prop);
+//            }
+        }
+        // after request preparement, opens a socket to given tracker node
+        var socket = $.atmosphere;
+        var subsocket = socket.subscribe(request);
+
+    }
+
+
+</script>
+<body>
+<div id="dialog" title="Test Server"></div>
+</body>
+</html>
