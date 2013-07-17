@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,50 +26,47 @@ import java.util.concurrent.Executors;
  */
 public class LogCaster extends HttpServlet {
 
-    private ExecutorService executorService;
+	private ExecutorService executorService;
 
-    @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-        initThreads();
-    }
+	@Override
+	public void init(ServletConfig servletConfig) throws ServletException {
+		initThreads();
+	}
 
-    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        executorService.shutdownNow();
-        ConfigManager.getInstance().restart();
-        initThreads();
-    }
+	protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+		executorService.shutdownNow();
+		ConfigManager.getInstance().restart();
+		initThreads();
+	}
 
-    private void initThreads() {
-        Map<String, List<ObservableResource>> serverMap = WLSLogFileDetector.getInstance().extractLogFileNames();
-        if (serverMap.size() != 0) {
-            //FIXME pooling dugru calismiyor
-            executorService = Executors.newFixedThreadPool(7);
-        }
-        Set<String> domains = serverMap.keySet();
-        for (String domain : domains) {
-            List<ObservableResource> observableResources = serverMap.get(domain);
-            for (ObservableResource observableResource : observableResources) {
-                File logFile = new File(observableResource.getLogFileLoc());
-                if (logFile.exists()) {
-                    Tailer tailer = new Tailer(logFile, new LogTailerAdapter(observableResource) {
+	private void initThreads() {
+		List<ObservableResource> observableResources = WLSLogFileDetector.getInstance().extractLogFileNames();
+		int size = observableResources.size();
+		if (size != 0) {
+			//FIXME pooling dugru calismiyor
+			executorService = Executors.newFixedThreadPool(size);
+		}
+		for (ObservableResource observableResource : observableResources) {
+			File logFile = new File(observableResource.getLogFileLoc());
+			if (logFile.exists()) {
+				Tailer tailer = new Tailer(logFile, new LogTailerAdapter(observableResource) {
 
-                        @Override
-                        public void handleLog(String headers, String logLine) {
-                            ObservableResource logTemplate = getObservableResource();
-                            logTemplate.setLogHeaders(headers);
-                            logTemplate.setLogLine(logLine);
-                            String log = toJson(logTemplate);
-                            MetaBroadcaster.getDefault().broadcastTo("/*", log);
-                        }
-                    }, 100, true);
-                    executorService.execute(tailer);
-                }
-            }
-        }
-    }
-
-
+					@Override
+					public void handleLog(String headers, String logLine) {
+						ObservableResource logTemplate = getObservableResource();
+						logTemplate.setLogHeaders(headers);
+						logTemplate.setLogLine(logLine);
+						String log = toJson(logTemplate);
+						MetaBroadcaster.getDefault().broadcastTo("/*", log);
+					}
+				}, 100, true);
+				executorService.execute(tailer);
+			}
+		}
+	}
 }
+
+
 
 
 

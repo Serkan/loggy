@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99f437e8-050d-4f53-b93b-06346b4487d6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/loggy-web/src/main/webapp/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogFileDetector.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogFileDetector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogTailerAdapter.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogTailerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/UserHandler.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/UserHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/TestJava.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/TestJava.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/WLSLogFileDetector.java" afterPath="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/WLSLogFileDetector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html" afterPath="$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/loggy-web/src/main/webapp/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loggy-web/src/main/webapp/worker/log-bridge.js" afterPath="$PROJECT_DIR$/loggy-web/src/main/webapp/worker/log-bridge.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="loggy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,8 +21,8 @@
     <file path="/LoggyStarter.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373551529780" ignored="false" />
     <file path="/web.xml" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373546746041" ignored="false" />
     <file path="/grid.html" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374094810429" ignored="false" />
-    <file path="/WLSLogFileDetector.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373612662079" ignored="false" />
-    <file path="/LogCaster.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373635763095" ignored="false" />
+    <file path="/WLSLogFileDetector.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374095820252" ignored="false" />
+    <file path="/LogCaster.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374095683839" ignored="false" />
     <file path="/context.xml" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373634552825" ignored="false" />
     <file path="/jetty-web.xml" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373634674794" ignored="false" />
     <file path="/LogGenerator.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373676274340" ignored="false" />
@@ -34,7 +32,7 @@
     <file path="/jquery.atmosphere-modified.js" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373748798832" ignored="false" />
     <file path="/a.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373751543150" ignored="false" />
     <file path="/sample.java" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373751553711" ignored="false" />
-    <file path="/Dummy.txt" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374084497395" ignored="false" />
+    <file path="/Dummy.txt" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374095262605" ignored="false" />
     <file path="/test.html" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1373916550300" ignored="false" />
     <file path="/a.dummy" changelist="99f437e8-050d-4f53-b93b-06346b4487d6" time="1374085042923" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -134,22 +132,52 @@
       <file leaf-file-name="LogGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="73" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0">
+            <state line="52" column="0" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grid.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TestJava.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/TestJava.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="52" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WLSLogFileDetector.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/WLSLogFileDetector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="75" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.80065715">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#857#877#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="grid.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="13" selection-start="3622" selection-end="3622" vertical-scroll-proportion="0.78503186">
+            <state line="125" column="9" selection-start="6737" selection-end="6737" vertical-scroll-proportion="-18.961538">
               <folding>
-                <marker date="1374094874204" expanded="false" signature="3562:3573" placeholder="..." />
-                <marker date="1374094874204" expanded="false" signature="4930:4939" placeholder="..." />
-                <marker date="1374094874204" expanded="false" signature="4994:5003" placeholder="..." />
-                <marker date="1374094874204" expanded="false" signature="5070:5079" placeholder="..." />
+                <marker date="1374095476536" expanded="false" signature="3493:3504" placeholder="..." />
+                <marker date="1374095476536" expanded="false" signature="4861:4870" placeholder="..." />
+                <marker date="1374095476536" expanded="false" signature="4925:4934" placeholder="..." />
+                <marker date="1374095476536" expanded="false" signature="5001:5010" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogCaster.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,22 +201,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/loggy-web/pom.xml" />
-        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/ObservableResource.java" />
-        <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/js/jquery.atmosphere-modified.js" />
         <option value="$PROJECT_DIR$/loggy-utils/pom.xml" />
         <option value="$PROJECT_DIR$/loggy-utils/src/main/java/org/easy/App.java" />
         <option value="$PROJECT_DIR$/loggy-utils/src/main/java/org/easy/JsModifier.java" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/js/jquery.atmosphere.js" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/js/jquery.tipTip.minified.js" />
-        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/UserHandler.java" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/test.html" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/worker/log-bridge.js" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogTailerAdapter.java" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/index.html" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html" />
+        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogFileDetector.java" />
+        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java" />
         <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java" />
+        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/TestJava.java" />
+        <option value="$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/WLSLogFileDetector.java" />
       </list>
     </option>
   </component>
@@ -1035,7 +1063,11 @@
       <created>1373834256800</created>
       <updated>1373834256800</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="optimization">
+      <created>1374095269437</created>
+      <updated>1374095269437</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1068,7 +1100,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2140575" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27582535" sideWeight="0.49779248" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27582535" sideWeight="0.49779248" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25772098" sideWeight="0.49834436" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -1081,7 +1113,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.046546545" sideWeight="0.61396575" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30022076" sideWeight="0.7241747" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22626932" sideWeight="0.72736955" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40042597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1127,7 +1159,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimization" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1141,6 +1173,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="initial" />
+    <MESSAGE value="optimization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1150,23 +1183,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/loggy-utils/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="16" selection-start="545" selection-end="545" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/webapp/js/jquery-1.9.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="367" column="12" selection-start="9604" selection-end="9604" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
-    <entry file="jar://D:/jdk1.6.0_35/src.zip!/java/io/FileOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="290" column="15" selection-start="11653" selection-end="11653" vertical-scroll-proportion="0.6048" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loggy-utils/src/main/java/org/easy/JsModifier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="17" selection-start="1034" selection-end="1034" vertical-scroll-proportion="0.0">
@@ -1217,13 +1233,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="39" selection-start="1851" selection-end="1851" vertical-scroll-proportion="0.5198777">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loggy-web/src/main/webapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="9" selection-start="771" selection-end="771" vertical-scroll-proportion="-12.423077">
@@ -1238,21 +1247,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java">
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="73" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0">
+        <state line="125" column="9" selection-start="6737" selection-end="6737" vertical-scroll-proportion="-18.961538">
+          <folding>
+            <marker date="1374095476536" expanded="false" signature="3493:3504" placeholder="..." />
+            <marker date="1374095476536" expanded="false" signature="4861:4870" placeholder="..." />
+            <marker date="1374095476536" expanded="false" signature="4925:4934" placeholder="..." />
+            <marker date="1374095476536" expanded="false" signature="5001:5010" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogFileDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="35" selection-start="275" selection-end="275" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/webapp/grid.html">
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/LogCaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="13" selection-start="3622" selection-end="3622" vertical-scroll-proportion="0.78503186">
+        <state line="69" column="0" selection-start="2031" selection-end="2031" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/LogGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1519" selection-end="1519" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/TestJava.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="52" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loggy-web/src/main/java/org/easy/loggy/core/WLSLogFileDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="75" selection-start="1320" selection-end="1320" vertical-scroll-proportion="0.80065715">
           <folding>
-            <marker date="1374094874204" expanded="false" signature="3562:3573" placeholder="..." />
-            <marker date="1374094874204" expanded="false" signature="4930:4939" placeholder="..." />
-            <marker date="1374094874204" expanded="false" signature="4994:5003" placeholder="..." />
-            <marker date="1374094874204" expanded="false" signature="5070:5079" placeholder="..." />
+            <element signature="imports" expanded="true" />
+            <element signature="e#857#877#0" expanded="true" />
           </folding>
         </state>
       </provider>

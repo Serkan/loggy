@@ -1,7 +1,6 @@
 package org.easy.loggy.core;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +11,6 @@ import java.util.Map;
  */
 public interface LogFileDetector {
 
-	public Map<String, List<ObservableResource>> extractLogFileNames();
+	public List<ObservableResource> extractLogFileNames();
 
 }

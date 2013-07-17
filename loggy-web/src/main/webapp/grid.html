@@ -45,8 +45,6 @@
 
 
     <script type="text/javascript">
-        var bindCounterMinimize = 0;
-        var counterTooltip = 0;
         var windows = {};
         var windowsWidgets = {};
         var windowsScroll = {};
@@ -119,9 +117,7 @@
         }
 
         function appendLogWidget(appendix, obj) {
-            var str = obj.logHeaders;
-            counterTooltip++;
-            windows[appendix].append('<span title="' + str + '">+++</span>' + obj.logLine + '<br /><br />');
+            windows[appendix].append('<span title="' + obj.logHeaders + '">+++</span>' + obj.logLine + '<br /><br />');
             var activeObj = windowsWidgets[appendix];
             var prop = activeObj.prop("scrollHeight");
             if (prop != 0 && windowsScroll[appendix]) {

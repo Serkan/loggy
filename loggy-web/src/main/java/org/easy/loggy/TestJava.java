@@ -6,8 +6,6 @@ import org.easy.loggy.core.ObservableResource;
 import org.easy.loggy.core.WLSLogFileDetector;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,11 +17,7 @@ import java.util.Set;
 public class TestJava {
 
 	public static void main(String[] args) {
-		Map<String, List<ObservableResource>> serverMap = WLSLogFileDetector.getInstance().extractLogFileNames();
-		Set<String> domains = serverMap.keySet();
-		for (String domain : domains) {
-			System.out.println(domain);
-			List<ObservableResource> observableResources = serverMap.get(domain);
+		List<ObservableResource> observableResources = WLSLogFileDetector.getInstance().extractLogFileNames();
 			for (ObservableResource observableResource : observableResources) {
 				Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().serializeNulls().create();
 				System.out.println(gson.toJson(observableResource));
@@ -36,6 +30,3 @@ public class TestJava {
 //		}
 
 	}
-
-
-}
