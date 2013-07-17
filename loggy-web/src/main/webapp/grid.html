@@ -43,18 +43,13 @@
     <script src="js/plugins/forms/uniform/jquery.uniform.min.js"></script>
     <script src="js/jquery.atmosphere.js"></script>
 
-    <!--<style type="text/css">-->
-    <!--.tip {-->
-    <!--background-image: url('css/img/plus.png');-->
-    <!--vertical-align: middle;-->
-    <!--height: 16px;-->
-    <!--width: 16px;-->
-    <!--}-->
-    <!--</style>-->
 
     <script type="text/javascript">
         var bindCounterMinimize = 0;
         var counterTooltip = 0;
+        var windows = {};
+        var windowsWidgets = {};
+        var windowsScroll = {};
 
         $(document).ready(function () {
             // this request gets tracker nodes
@@ -90,7 +85,7 @@
             request.onMessage = function (response) {
                 var obj = JSON.parse(response.responseBody);
                 var appendix = obj.listenAddress + obj.listenPort;
-                if ($('#' + appendix + 'header').length > 0) {
+                if (windows[appendix] != null) {
                     appendLogWidget(appendix, obj);
                 }
                 else {
@@ -106,7 +101,7 @@
 
         function createLogWidget(appendix, obj) {
             $("#mainContainer").append('<div class="row-fluid"><div class="span12"><div class="widget"><div class="widget-title">'
-                    + '<div class="icon"><i class="icon20 i-cube"></i></div><h4 id="' + appendix + 'header"> Domain Name :  ' + obj.domainName + '   <span style="color:red">|</span> Server Name : ' + obj.name + ' <span style="color:red">|</span> Listen Address : ' + obj.listenAddress + ' <span style="color:red">|</span> Listen Port :  ' + obj.listenPort + '</h4>'
+                    + '<div class="icon"><i class="icon20 i-cube"></i></div><h4 id="' + appendix + 'header"> Domain Name :  ' + obj.domainName + '   <span style="color:red">|</span> Server Name : ' + obj.name + ' <span style="color:red">|</span> Listen Address : ' + obj.listenAddress + ' <span style="color:red">|</span> Listen Port :  ' + obj.listenPort + '</h4> <button class="btn" onclick="scrollLock(\'' + appendix + '\')">Scroll Lock</button>'
                     + '<a href="#" id="' + appendix + 'slideToggle" class="maximize"></a></div><div id="' + appendix + 'widgetContent" class="widget-content" style="display:none;"><div id="' + appendix + 'newContent" style="display:none;"></div>'
                     + '<div id="' + appendix + 'fullContent"></div></div></div></div></div>');
             $('#' + appendix + 'slideToggle').bind('click', function () {
@@ -118,25 +113,24 @@
                     activeObj.scrollTop(activeObj.prop("scrollHeight"));
                 }
             });
+            windowsScroll[appendix] = true;
+            windows[appendix] = $('#' + appendix + 'fullContent');
+            windowsWidgets[appendix] = $('#' + appendix + 'widgetContent');
         }
 
         function appendLogWidget(appendix, obj) {
-//            $('#' + appendix + 'newContent').text(obj.logLine);
-//            var str = "";
             var str = obj.logHeaders;
-//            var logHeaderLength = logHeaderObj.length;
-//            for (var i = 0; i < logHeaderLength; i++) {
-//                str += logHeaderObj[i] + "<br />";
-//            }
             counterTooltip++;
-            $('#' + appendix + 'fullContent').append('<img src="css/img/plus.png" style="vertical-align: middle" id="' + counterTooltip + 'toolTip"  class="toolTip" title="' + str + '"/>&nbsp;&nbsp;' + obj.logLine + "<br /><br />");
-//            $('#' + appendix + 'fullContent').append(obj.logLine + "<br />");
-            $("#" + counterTooltip + "toolTip").tipTip();
-            var activeObj = $('#' + appendix + 'widgetContent');
+            windows[appendix].append('<span title="' + str + '">+++</span>' + obj.logLine + '<br /><br />');
+            var activeObj = windowsWidgets[appendix];
             var prop = activeObj.prop("scrollHeight");
-            if (prop != 0) {
+            if (prop != 0 && windowsScroll[appendix]) {
                 activeObj.scrollTop(prop);
             }
+        }
+
+        function scrollLock(appendix) {
+            windowsScroll[appendix] = !windowsScroll[appendix];
         }
     </script>
 </head>

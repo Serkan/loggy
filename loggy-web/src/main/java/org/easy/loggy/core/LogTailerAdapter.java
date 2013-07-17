@@ -52,7 +52,7 @@ public abstract class LogTailerAdapter extends TailerListenerAdapter {
 				String temp = parts[i].replaceAll(">", "");
 				if (temp != null && !temp.trim().equals("")) {
 					logHeaders.append(temp);
-					logHeaders.append("<br />");
+					logHeaders.append("&lt;br /&gt;");
 				}
 			}
 			String logLine = parts[length - 1].replaceAll(">", "");

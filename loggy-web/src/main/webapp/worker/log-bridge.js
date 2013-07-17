@@ -1,31 +1,29 @@
-importScripts("../js/jquery.atmosphere.js");
-/**
- * Opens a atmosphere connection which may be a websocket, comet or long-polling
- * decided by atmosphere framework autamaticly.
- *
- * @param trackerIPportPair trackerIP:port string
- */
-var request = { url: 'http://' + 'localhost:8080' + '/loggy/resource/',
-    contentType: "application/json",
-    logLevel: 'debug',
-    enableProtocol: true,
-    transport: 'websocket'
-};
-// atmosphere connection establishment
-request.onOpen = function (response) {
-    console.log('Connection established with ' + response);
-}
+var queue = [];
+self.addEventListener('message', function (e) {
+    var data = e.data;
+    switch (data.cmd) {
+        case 'start':
+            var request = new WebSocket('ws://127.0.0.1:8080/loggy/resource/?X-Atmosphere-tracking-id=0&X-Atmosphere-Framework=1.1.0&X-Atmosphere-Transport=websocket&X-Cache-Date=0&Content-Type=application/json&X-atmo-protocol=true');
+            // atmosphere connection establishment
+            request.onopen = function () {
+                self.postMessage('web socket connection opened');
+            }
+            request.onmessage = function (msg) {
+                queue.push(msg.data);
+                self.postMessage(msg.data);
+            }
+            setInterval(function () {
+                if(queue.length != 0){
 
-// every log line pushed from server drops to onMessage method, response.responseBody
-// contains json object identified by following example
-// {"domainName":"test_domain","name":"test_serv01","listenPort":"7003","listenAddress":"application01","logLine":<Server> <Jms> ....... <>}
-request.onMessage = function (response) {
-//    var obj = JSON.parse(response.responseBody);
-//    console.log(obj);
-    console.log(response);
-}
-// after request preparement, opens a socket to given tracker node
-var socket = jQuery.atmosphere;
-socket.subscribe(request);
-
-
+                }
+            }, 2000);
+            break;
+        case 'stop':
+            self.postMessage('WORKER STOPPED');
+            self.close(); // Terminates the worker.
+            break;
+        default:
+            self.postMessage('Unknown command');
+    }
+    ;
+}, false);

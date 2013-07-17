@@ -20,7 +20,7 @@ public class UserHandler implements AtmosphereHandler {
 	@Override
 	public void onRequest(AtmosphereResource atmosphereResource) throws IOException {
 		Broadcaster broadcaster = atmosphereResource.getBroadcaster();
-		broadcaster.broadcast("hello broadcast");
+//		broadcaster.broadcast("hello broadcast");
 	}
 
 	@Override

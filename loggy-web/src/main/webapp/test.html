@@ -1,0 +1,25 @@
+<html>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<!--<script src="js/jquery-1.9.0.js"></script>-->
+<script src="js/jquery.atmosphere.js"></script>
+<script type="text/javascript">
+
+    var request = new WebSocket('ws://127.0.0.1:8080/loggy/resource/?X-Atmosphere-tracking-id=0&X-Atmosphere-Framework=1.1.0&X-Atmosphere-Transport=websocket&X-Cache-Date=0&Content-Type=application/json&X-atmo-protocol=true');
+
+    // atmosphere connection establishment
+    request.onopen = function () {
+        console.log('web socket connection opened');
+    }
+    request.onmessage = function (msg) {
+        console.log(msg);
+    }
+
+
+</script>
+<body>
+<div id="dialog" title="Test Server"></div>
+</body>
+</html>

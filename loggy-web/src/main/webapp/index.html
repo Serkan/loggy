@@ -7,59 +7,27 @@
 <script src="js/jquery.atmosphere.js"></script>
 <script type="text/javascript">
 
+    var worker = new Worker('worker/log-bridge.js');
+    var starter = {cmd: 'start'};
+
+    worker.postMessage(starter);
+
+    worker.addEventListener('message', function (e) {
+//        var response = JSON.parse(e.data);
+//        $('#dialog').append(response.logLine);
+        console.log(e.data);
+    }, false);
+
     $(function () {
         $("#dialog").dialog();
     });
 
-    $(document).ready(function () {
-        // this request gets tracker nodes
-        $.ajax({
-            url: "ManagementConfig",
-            dataType: "json"
-        }).done(function (msg) {
-                    for (var i = 0; i < msg.length; i++) {
-                        openSocketTo(msg[i]);
-                    }
-                });
-    });
-    /**
-     * Opens a atmosphere connection which may be a websocket, comet or long-polling
-     * decided by atmosphere framework autamaticly.
-     *
-     * @param trackerIPportPair trackerIP:port string
-     */
-    function openSocketTo(trackerIPportPair) {
-        var request = { url: 'http://' + trackerIPportPair + '/loggy/resource/',
-            contentType: "application/json",
-            logLevel: 'debug',
-            enableProtocol: true,
-            transport: 'websocket'
-        };
-        // atmosphere connection establishment
-        request.onOpen = function (response) {
-            $('#serverName').append(" (<span style='color:green'>Connection Established</span>)");
-        }
-        // every log line pushed from server drops to onMessage method, response.responseBody
-        // contains json object identified by following example
-        // {"domainName":"test_domain","name":"test_serv01","listenPort":"7003","listenAddress":"application01","logLine":<Server> <Jms> ....... <>}
-        request.onMessage = function (response) {
-            var s = JSON.parse(response.responseBody);
-            $('#dialog').append(s.logLine);
-//            var activeObj = $('#dialog');
-//            var prop = activeObj.prop("scrollHeight");
-//            if (prop != 0) {
-//                activeObj.scrollTop(prop);
-//            }
-        }
-        // after request preparement, opens a socket to given tracker node
-        var socket = $.atmosphere;
-        var subsocket = socket.subscribe(request);
-
-    }
-
 
 </script>
 <body>
-<div id="dialog" title="Test Server"></div>
+<div id="dialog" title="Test Server">&quot;&quot;&quot;&quot;</div>
+&quot;
+
+<a onClick="alert('serkan')">tikla</a>
 </body>
 </html>
