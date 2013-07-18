@@ -37,7 +37,7 @@ public class LogGenerator {
 						System.out.println(count.addAndGet(1));
 						try {
 							fos.write(random.getBytes());
-							Thread.sleep(100);
+							Thread.sleep(20);
 						} catch (IOException e) {
 							throw new RuntimeException(e);
 						} catch (InterruptedException e) {

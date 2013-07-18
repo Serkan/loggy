@@ -7,27 +7,30 @@
 <script src="js/jquery.atmosphere.js"></script>
 <script type="text/javascript">
 
-    var worker = new Worker('worker/log-bridge.js');
-    var starter = {cmd: 'start'};
-
-    worker.postMessage(starter);
-
-    worker.addEventListener('message', function (e) {
-//        var response = JSON.parse(e.data);
-//        $('#dialog').append(response.logLine);
-        console.log(e.data);
-    }, false);
-
-    $(function () {
-        $("#dialog").dialog();
+    $(document).ready(function () {
+        alert('test');
+        var div = document.getElementById('dialog');
+        div.innerHTML = div.innerHTML + 'Extra stuff';
     });
+
+    //    var worker = new Worker('worker/log-bridge.js');
+    //    var starter = {cmd: 'start'};
+    //
+    //    worker.postMessage(starter);
+    //
+    //    worker.addEventListener('message', function (e) {
+    ////        var response = JSON.parse(e.data);
+    ////        $('#dialog').append(response.logLine);
+    //        console.log(e.data);
+    //    }, false);
+    //
+    //    $(function () {
+    //        $("#dialog").dialog();
+    //    });
 
 
 </script>
 <body>
-<div id="dialog" title="Test Server">&quot;&quot;&quot;&quot;</div>
-&quot;
-
-<a onClick="alert('serkan')">tikla</a>
+<div id="dialog" title="Test Server">test text</div>
 </body>
 </html>

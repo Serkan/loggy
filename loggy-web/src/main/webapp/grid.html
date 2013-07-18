@@ -48,6 +48,7 @@
         var windows = {};
         var windowsWidgets = {};
         var windowsScroll = {};
+        var windowsFragments = {};
 
         $(document).ready(function () {
             // this request gets tracker nodes
@@ -101,19 +102,29 @@
             $("#mainContainer").append('<div class="row-fluid"><div class="span12"><div class="widget"><div class="widget-title">'
                     + '<div class="icon"><i class="icon20 i-cube"></i></div><h4 id="' + appendix + 'header"> Domain Name :  ' + obj.domainName + '   <span style="color:red">|</span> Server Name : ' + obj.name + ' <span style="color:red">|</span> Listen Address : ' + obj.listenAddress + ' <span style="color:red">|</span> Listen Port :  ' + obj.listenPort + '</h4> <button class="btn" onclick="scrollLock(\'' + appendix + '\')">Scroll Lock</button>'
                     + '<a href="#" id="' + appendix + 'slideToggle" class="maximize"></a></div><div id="' + appendix + 'widgetContent" class="widget-content" style="display:none;"><div id="' + appendix + 'newContent" style="display:none;"></div>'
-                    + '<div id="' + appendix + 'fullContent"></div></div></div></div></div>');
+                    + '<div class="content" id="' + appendix + 'fullContent"></div></div></div></div></div>');
             $('#' + appendix + 'slideToggle').bind('click', function () {
                 if ($(this).hasClass('minimize')) {
-                    $(this).removeClass('minimize').addClass('maximize').closest('div.widget-title').next('div.widget-content').slideUp('200')
+                    $(this).removeClass('minimize').addClass('maximize').closest('div.widget-title').next('div.widget-content').slideUp('200');
+                    windowsFragments[appendix] = removeToInsertLater($('#' + appendix + 'fullContent').get(0));
                 } else {
+//                    if ($('.minimize').length > 0) {
+//                        $('.minimize').removeClass('minimize').addClass('maximize').closest('div.widget-title').next('div.widget-content').slideUp('200');
+//                        $('.minimize').each(function (index) {
+//                            windowsFragments[appendix] = removeToInsertLater($(this).closest('div.content').get(0));
+//                        });
+//                    }
                     $(this).removeClass('maximize').addClass('minimize').closest('div.widget-title').next('div.widget-content').slideDown('200');
                     var activeObj = $(this).closest('div.widget-title').next('div.widget-content');
                     activeObj.scrollTop(activeObj.prop("scrollHeight"));
+                    var maxFunc = windowsFragments[appendix];
+                    maxFunc();
                 }
             });
             windowsScroll[appendix] = true;
             windows[appendix] = $('#' + appendix + 'fullContent');
             windowsWidgets[appendix] = $('#' + appendix + 'widgetContent');
+            windowsFragments[appendix] = removeToInsertLater($('#' + appendix + 'fullContent').get(0));
         }
 
         function appendLogWidget(appendix, obj) {
@@ -127,6 +138,24 @@
 
         function scrollLock(appendix) {
             windowsScroll[appendix] = !windowsScroll[appendix];
+        }
+
+        /**
+         * Remove an element and provide a function that inserts it into its original position
+         * @param element {Element} The element to be temporarily removed
+         * @return {Function} A function that inserts the element into its original position
+         **/
+        function removeToInsertLater(element) {
+            var parentNode = element.parentNode;
+            var nextSibling = element.nextSibling;
+            parentNode.removeChild(element);
+            return function () {
+                if (nextSibling) {
+                    parentNode.insertBefore(element, nextSibling);
+                } else {
+                    parentNode.appendChild(element);
+                }
+            };
         }
     </script>
 </head>
